@@ -1,4 +1,4 @@
-export const uploadImage = async(image) => {
+export const uploadImage = async(images) => {
     let imgArr = []
 
     for(const item of images) {

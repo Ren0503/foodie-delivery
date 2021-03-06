@@ -27,6 +27,13 @@ const Home = (props) => {
     }, [router.query])
 
     const handleCheck = (id) => {
+        products.forEach(product => {
+            if(product._id === id) product.checked = !product.checked
+        })
+        setProducts([...products])
+    }
+
+    const handleCheckALL = () => {
         products.forEach(product => product.checked = !isCheck)
         setProducts([...products])
         setIsCheck(!isCheck)
@@ -57,51 +64,51 @@ const Home = (props) => {
         <div className="home_page">
             <Head>
                 <title>Home Page</title>
+            </Head>
 
-                <Search state={state} />
-                <div className="container">
+            <Search state={state} />
+            <div className="container">
+                {
+                    auth.user && auth.user.role === 'admin' &&
+                    <div className="delete_all btn btn-danger mt-2" style={{ marginBottom: '-10px' }}>
+                        <input
+                            type="checkbox" checked={isCheck} onChange={handleCheckALL}
+                            style={{ width: '25px', height: '25px', transform: 'translateY(8px)' }}
+                        />
+
+                        <button
+                            className="btn btn-danger ml-2"
+                            data-toggle="modal" data-target="#exampleModal"
+                            onClick={handleDeleteAll}
+                        >DELETE ALL</button>
+                    </div>
+                }
+
+
+                <div className="products animate__animated animate__fadeInUp animate__delay-1s">
                     {
-                        auth.user && auth.user.role === 'admin' &&
-                        <div className="delete_all btn btn-danger mt-2" style={{ marginBottom: '-10px' }}>
-                            <input
-                                type="checkbox" checked={isCheck} onChange={handleCheckALL}
-                                style={{ width: '25px', height: '25px', transform: 'translateY(8px)' }}
-                            />
-
-                            <button
-                                className="btn btn-danger ml-2"
-                                data-toggle="modal" data-target="#exampleModal"
-                                onClick={handleDeleteAll}
-                            >DELETE ALL</button>
-                        </div>
-                    }
-
-
-                    <div className="products">
-                        {
-                            products.length === 0
+                        products.length === 0
                             ? <h2>No Products</h2>
 
                             : products.map(product => (
                                 <ProductItem key={product._id} product={product} handleCheck={handleCheck} />
                             ))
-                        }
-                    </div>
+                    }
+                </div>
 
-                    {
-                        props.result < page * 6 ? ""
+                {
+                    props.result < page * 6 ? ""
                         : <button className="btn btn-outline-info d-block mx-auto mb-4"
                             onClick={handleLoadMore}>
                             Load more
                         </button>
-                    }
-                </div>
-            </Head>
+                }
+            </div>
         </div>
     )
 }
 
-export async function getServerSideProps({query}) {
+export async function getServerSideProps({ query }) {
     const page = query.page || 1
     const category = query.category || 'all'
     const sort = query.sort || ''

@@ -8,7 +8,7 @@ import { patchData } from '../services/fetchData'
 import { uploadImage } from '../services/uploadImage'
 
 const Profile = () => {
-    const initialSate = {
+    const initialState = {
         avatar: '',
         name: '',
         password: '',

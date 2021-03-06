@@ -28,7 +28,7 @@ const Search = ({ state }) => {
     return (
         <div className="jumbotron jumbotron-fluid">
             <div className="container px-5">
-                <h2 className="text-center">Discover the best food & drinks in Delhi NCR</h2>
+                <h2 className="text-center">Discover the best food & drinks in Foodie</h2>
                 <div className="input-group">
                     <div className="input-group-prepend col-md-2 px-0 mt-2">
                         <select

@@ -3,7 +3,7 @@ import { useContext, useState } from 'react'
 import { ACTIONS } from '../context/constants'
 import { DataContext } from '../context/store'
 import { updateItem } from '../context/actions'
-import { postData, putData } from "../utils/fetchData"
+import { postData, putData } from "../services/fetchData"
 
 const Categories = () => {
     const [name, setName] = useState('')

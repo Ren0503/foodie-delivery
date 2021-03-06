@@ -19,7 +19,7 @@ const ProductsManager = () => {
     const [product, setProduct] = useState(initialState)
     const { title, price, inStock, description, restaurant, category } = product
 
-    const [image, setImage] = useState([])
+    const [images, setImages] = useState([])
 
     const { state, dispatch } = useContext(DataContext)
     const { categories, auth } = state
@@ -33,12 +33,12 @@ const ProductsManager = () => {
             setOnEdit(true)
             getData(`product/${id}`).then(res => {
                 setProduct(res.product)
-                setImage(res.product.images)
+                setImages(res.product.images)
             })
         } else {
             setOnEdit(false)
             setProduct(initialState)
-            setImage([])
+            setImages([])
         }
     }, [id])
 
@@ -50,7 +50,7 @@ const ProductsManager = () => {
 
     const handleUploadInput = e => {
         dispatch({ type: ACTIONS.NOTIFICATION, payload: {} })
-        let newImage = []
+        let newImages = []
         let num = 0
         let err = ''
         const files = [...e.target.files]

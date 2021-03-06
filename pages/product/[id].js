@@ -65,7 +65,7 @@ const DetailProduct = (props) => {
 
                     <div className="my-2">{product.description}</div>
                     <div className="my-2">
-                        {product.restaurant}
+                        <i className="fas fa-city"></i> Address: {product.restaurant}
                     </div>
 
                     <button type="button" className="btn btn-dark d-block my-3 px-5"
