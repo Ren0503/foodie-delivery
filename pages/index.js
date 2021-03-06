@@ -1,65 +1,122 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useRouter } from 'next/router'
+import { useState, useContext, useEffect } from 'react'
+import { DataContext } from '../context/store'
+import { ACTIONS } from '../context/constants'
+import { getData } from '../services/fetchData'
+import Search from '../components/products/Search'
+import ProductItem from '../components/products/ProductItem'
+import filterSearch from '../services/filterSearch'
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+const Home = (props) => {
+    const [products, setProducts] = useState(props.products)
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+    const [isCheck, setIsCheck] = useState(false)
+    const [page, setPage] = useState(1)
+    const router = useRouter()
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+    const { state, dispatch } = useContext(DataContext)
+    const { auth } = state
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+    useEffect(() => {
+        setProducts(props.products)
+    }, [props.products])
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+    useEffect(() => {
+        if (Object.keys(router.query).length === 0) setPage(1)
+    }, [router.query])
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+    const handleCheck = (id) => {
+        products.forEach(product => product.checked = !isCheck)
+        setProducts([...products])
+        setIsCheck(!isCheck)
+    }
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    const handleDeleteAll = () => {
+        let deleteArr = []
+        products.forEach(product => {
+            if (product.checked) {
+                deleteArr.push({
+                    data: '',
+                    id: product._id,
+                    title: 'Delete all selected products?',
+                    type: ACTIONS.DELETE_PRODUCT
+                })
+            }
+        })
+
+        dispatch({ type: ACTIONS.ADD_MODAL, payload: deleteArr })
+    }
+
+    const handleLoadMore = () => {
+        setPage(page + 1)
+        filterSearch({ router, page: page + 1 })
+    }
+
+    return (
+        <div className="home_page">
+            <Head>
+                <title>Home Page</title>
+
+                <Search state={state} />
+                <div className="container">
+                    {
+                        auth.user && auth.user.role === 'admin' &&
+                        <div className="delete_all btn btn-danger mt-2" style={{ marginBottom: '-10px' }}>
+                            <input
+                                type="checkbox" checked={isCheck} onChange={handleCheckALL}
+                                style={{ width: '25px', height: '25px', transform: 'translateY(8px)' }}
+                            />
+
+                            <button
+                                className="btn btn-danger ml-2"
+                                data-toggle="modal" data-target="#exampleModal"
+                                onClick={handleDeleteAll}
+                            >DELETE ALL</button>
+                        </div>
+                    }
+
+
+                    <div className="products">
+                        {
+                            products.length === 0
+                            ? <h2>No Products</h2>
+
+                            : products.map(product => (
+                                <ProductItem key={product._id} product={product} handleCheck={handleCheck} />
+                            ))
+                        }
+                    </div>
+
+                    {
+                        props.result < page * 6 ? ""
+                        : <button className="btn btn-outline-info d-block mx-auto mb-4"
+                            onClick={handleLoadMore}>
+                            Load more
+                        </button>
+                    }
+                </div>
+            </Head>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+    )
 }
+
+export async function getServerSideProps({query}) {
+    const page = query.page || 1
+    const category = query.category || 'all'
+    const sort = query.sort || ''
+    const search = query.search || 'all'
+
+    const res = await getData(
+        `product?limit=${page * 6}&category=${category}&sort=${sort}&title=${search}`
+    )
+
+    return {
+        props: {
+            products: res.products,
+            result: res.result,
+        },
+    }
+}
+
+export default Home

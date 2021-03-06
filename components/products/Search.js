@@ -26,47 +26,52 @@ const Search = ({ state }) => {
     }, [search])
 
     return (
-        <div className="input-group">
-            <div className="input-group-prepend col-md-2 px-0 mt-2">
-                <select 
-                    className="custom-select text-capitalize"
-                    value={category} 
-                    onChange={handleCategory}
-                >
-                    <option value="all">All Products</option>
+        <div className="jumbotron jumbotron-fluid">
+            <div className="container px-5">
+                <h2 className="text-center">Discover the best food & drinks in Delhi NCR</h2>
+                <div className="input-group">
+                    <div className="input-group-prepend col-md-2 px-0 mt-2">
+                        <select
+                            className="custom-select text-capitalize"
+                            value={category}
+                            onChange={handleCategory}
+                        >
+                            <option value="all">All Products</option>
 
-                    {categories.map(item => (
-                        <option key={item._id} value={item._id}>
-                            {item.name}
-                        </option>
-                    ))}
-                </select>
-            </div>
+                            {categories.map(item => (
+                                <option key={item._id} value={item._id}>
+                                    {item.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
-            <form autoComplete="off" className="mt-2 col-md-8 px-0">
-                <input 
-                    type="text" 
-                    className="form-control" 
-                    list="title_product"
-                    value={search.toLowerCase()} 
-                    onChange={e => setSearch(e.target.value)} 
-                />
-            </form>
+                    <form autoComplete="off" className="mt-2 col-md-8 px-0">
+                        <input
+                            type="text"
+                            className="form-control"
+                            list="title_product"
+                            value={search.toLowerCase()}
+                            onChange={e => setSearch(e.target.value)}
+                        />
+                    </form>
 
-            <div className="input-group-prepend col-md-2 px-0 mt-2">
-                <select 
-                    className="custom-select text-capitalize"
-                    value={sort} 
-                    onChange={handleSort}
-                >
+                    <div className="input-group-prepend col-md-2 px-0 mt-2">
+                        <select
+                            className="custom-select text-capitalize"
+                            value={sort}
+                            onChange={handleSort}
+                        >
 
-                    <option value="-createdAt">Newest</option>
-                    <option value="oldest">Oldest</option>
-                    <option value="-sold">Best sales</option>
-                    <option value="-price">Price: Hight-Low</option>
-                    <option value="price">Price: Low-Hight</option>
+                            <option value="-createdAt">Newest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="-sold">Best sales</option>
+                            <option value="-price">Price: Hight-Low</option>
+                            <option value="price">Price: Low-Hight</option>
 
-                </select>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
     )

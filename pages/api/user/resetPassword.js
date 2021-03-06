@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt'
 import connectDB from '../../../config/db'
 import Users from '../../../models/userModel'
 import auth from '../../../middleware/authMiddleware'
-import resetPassword from '../../../../nextjs-ecommerce-master/pages/api/user/resetPassword'
 
 connectDB()
 

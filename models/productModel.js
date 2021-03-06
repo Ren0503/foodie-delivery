@@ -15,7 +15,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    content: {
+    restaurant: {
         type: String,
         required: true
     },
