@@ -89,7 +89,7 @@ function Navbar() {
                                     <span className="position-absolute"
                                         style={{
                                             padding: '3px 6px',
-                                            background: '#ed143dc2',
+                                            background: '#14bb09',
                                             borderRadius: '50%',
                                             top: '-10px',
                                             right: '-10px',

@@ -39,7 +39,7 @@ const createOrder = async (req, res) => {
         const { address, mobile, cart, total } = req.body
 
         const newOrder = new Orders({
-            user: result.if,
+            user: result.id,
             address,
             mobile,
             cart,
