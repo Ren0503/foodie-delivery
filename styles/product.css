@@ -28,6 +28,10 @@
     -webkit-line-clamp: 3;
 }
 
+.products .card-img-top:hover{
+    animation: pulse; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s; 
+}
 
 /* --------- Detail Product ----------- */
 .detail_page .img-thumbnail.active{

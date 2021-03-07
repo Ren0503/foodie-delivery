@@ -20,7 +20,7 @@ const DetailProduct = (props) => {
         <div className="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Product</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{product.title}</li>
                 </ol>
@@ -63,10 +63,10 @@ const DetailProduct = (props) => {
                         <h6 className="text-danger">Sold: {product.sold}</h6>
                     </div>
 
-                    <div className="my-2">{product.description}</div>
-                    <div className="my-2">
-                        <i className="fas fa-city"></i> Address: {product.restaurant}
-                    </div>
+                    <p className="my-2">{product.description}</p>
+                    <p className="my-2">
+                        <i className="fas fa-map-marker-alt	"></i> Address: {product.restaurant}
+                    </p>
 
                     <button type="button" className="btn btn-dark d-block my-3 px-5"
                         onClick={() => dispatch(addToCart(product, cart))} >

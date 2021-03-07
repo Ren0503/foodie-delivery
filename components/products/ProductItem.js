@@ -15,7 +15,9 @@ const ProductItem = ({ product, handleCheck }) => {
                     <a
                         className="btn btn-info"
                         style={{ marginRight: '5px', flex: 1 }}
-                    >View</a>
+                    >
+                      <i className="fas fa-eye"></i> View
+                    </a>
                 </Link>
                 <button
                     className="btn btn-success"
@@ -23,7 +25,7 @@ const ProductItem = ({ product, handleCheck }) => {
                     disabled={product.inStock === 0 ? true : false}
                     onClick={() => dispatch(addToCart(product, cart))}
                 >
-                    Buy
+                    <i className="fas fa-shopping-cart"></i> Buy
                 </button>
             </>
         )
@@ -36,7 +38,9 @@ const ProductItem = ({ product, handleCheck }) => {
                     <a
                         className="btn btn-info"
                         style={{ marginRight: '5px', flex: 1 }}
-                    >Edit</a>
+                    >
+                        <i className="fas fa-pen"></i> Edit
+                    </a>
                 </Link>
                 <button
                     className="btn btn-danger"
@@ -52,7 +56,7 @@ const ProductItem = ({ product, handleCheck }) => {
                         }]
                     })}
                 >
-                    Delete
+                    <i className="far fa-trash-alt"></i> Delete
                 </button>
             </>
         )
@@ -82,19 +86,14 @@ const ProductItem = ({ product, handleCheck }) => {
                 </h5>
 
                 <div className="row justify-content-between mx-0">
-                    <h6 className="text-danger">${product.price}</h6>
-                    {
-                        product.inStock > 0
-                            ? <h6 className="text-danger">In Stock: {product.inStock}</h6>
-                            : <h6 className="text-danger">Out Stock</h6>
-                    }
+                    <h3 className="text-danger">${product.price}</h3>
                 </div>
 
-                <p className="card-text" title={product.description}>
-                    {product.description}
+                <p className="card-text" title={product.restaurant}>
+                    <i className="fas fa-map-marker-alt	"></i> {product.restaurant}
                 </p>
 
-                <div className="row justify-content-between mx-0">
+                <div className="card-footer text-center">
                     {!auth.user || auth.user.role !== "admin" ? userLink() : adminLink()}
                 </div>
             </div>

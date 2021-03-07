@@ -5,6 +5,10 @@ body {
   font-family: 'Fredoka One', cursive;
 }
 
+p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -25,15 +29,24 @@ img{
 }
 
 .jumbotron {
-  background-image: url('../assets/images/background.jpg');
+  background-image: linear-gradient(to right,black 0%,gray 60%), url("../assets/images/background.jpg");
+  background-blend-mode: multiply;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
+
+  padding: 5rem;
 }
 
 .jumbotron h2 {
-  color: crimson;
+  color: aliceblue;
+  font-size: 5rem;
+}
+
+.btn:hover{
+  animation: headShake; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s; 
 }
 
 /** ---------- Fonts -------------- */
