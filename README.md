@@ -43,5 +43,4 @@ npm run dev
 |                                        Profile                                        |                                        Manager                                        |                                        Products                                        |
 | 
 :--------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: |
-| ![](https://github.com/Ren0503/foodie-delivery/blob/main/assets/demo/158120195_1163433210775860_2523027022869281743_n.png) | ![](https://github.com/Ren0503/foodie-delivery/blob/main/assets/demo/156442896_1732948906879839_3960325433141820867_n.png)
-| ![](https://github.com/Ren0503/foodie-delivery/blob/main/assets/demo/156434492_271906124495745_8664491753734605833_n.png) |
+| ![](https://github.com/Ren0503/foodie-delivery/blob/main/assets/demo/158120195_1163433210775860_2523027022869281743_n.png) | ![](https://github.com/Ren0503/foodie-delivery/blob/main/assets/demo/156442896_1732948906879839_3960325433141820867_n.png) | ![](https://github.com/Ren0503/foodie-delivery/blob/main/assets/demo/156434492_271906124495745_8664491753734605833_n.png) |
