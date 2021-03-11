@@ -19,8 +19,8 @@
 ```sh
 git clone https://github.com/Ren0503/foodie-delivery.git
 cd foodie-delivery
-npm install
-npm run dev
+yarn
+yarn dev
 ```
 ## Package
 
