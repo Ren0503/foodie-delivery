@@ -72,7 +72,7 @@ function Navbar() {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg">
+        <nav className="navbar navbar-expand-lg text-light">
             <div className="container">
             <img src="/logo.png" alt="Logo" height="50" />
             <Link href="/">

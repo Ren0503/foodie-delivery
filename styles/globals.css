@@ -44,6 +44,25 @@ img{
   font-size: 5rem;
 }
 
+
+@media screen and (max-width: 900px) {
+  .jumbotron {
+    padding: 3rem;
+  }
+  .jumbotron h2 {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .jumbotron {
+    padding: 2rem;
+  }
+  .jumbotron h2 {
+    font-size: 2rem;
+  }
+}
+
 .btn:hover{
   animation: headShake; /* referring directly to the animation's @keyframe declaration */
   animation-duration: 2s; 
