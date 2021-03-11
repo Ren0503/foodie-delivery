@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useContext, useEffect } from 'react'
 import { DataContext } from '../../context/store'
-import OrderDetail from '../../components/orders/OrderDetail'
+import OrderDetail from '../../components/orders/orderdetail'
 
 const DetailOrder = () => {
     const {state, dispatch} = useContext(DataContext)

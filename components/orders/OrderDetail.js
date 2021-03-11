@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import PayPalButton from './PayPalButton'
+import PayPalButton from './paypalbutton'
 import { ACTIONS } from '../../context/constants'
 import { updateItem } from '../../context/actions'
 import { patchData } from '../../services/fetchData'

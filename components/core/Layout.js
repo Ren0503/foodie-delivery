@@ -1,8 +1,8 @@
 import React from 'react'
-import NavBar from './NavBar'
-import Notify from './Notify'
-import Modal from './Modal'
-import Footer from './Footer'
+import NavBar from './navbar'
+import Notify from './notify'
+import Modal from './modal'
+import Footer from './footer'
 
 
 function Layout({ children }) {

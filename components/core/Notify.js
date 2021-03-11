@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import Toast from '../shared/Toast'
-import Loading from '../shared/Loading'
+import Toast from '../shared/toast'
+import Loading from '../shared/loading'
 import { DataContext } from '../../context/store'
 import { ACTIONS } from '../../context/constants'
 

@@ -4,8 +4,8 @@ import { useState, useContext, useEffect } from 'react'
 import { DataContext } from '../context/store'
 import { ACTIONS } from '../context/constants'
 import { getData } from '../services/fetchData'
-import Search from '../components/products/Search'
-import ProductItem from '../components/products/ProductItem'
+import Search from '../components/products/search'
+import ProductItem from '../components/products/productitem'
 import filterSearch from '../services/filterSearch'
 
 const Home = (props) => {
